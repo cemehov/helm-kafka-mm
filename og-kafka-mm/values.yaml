@@ -56,7 +56,7 @@ prometheus:
   ## ref: https://github.com/prometheus/jmx_exporter
   jmx:
     image: solsson/kafka-prometheus-jmx-exporter@sha256
-    imageTag: 6f82e2b0464f50da8104acd7363fb9b995001ddff77d248379f8788e78946143
+    imageTag: 70852d19ab9182c191684a8b08ac831230006d82e65d1db617479ea27884e4e8
     port: 5556
 
     ## Resources configuration for the JMX exporter container.
@@ -82,3 +82,17 @@ kafka:
     fetch.min.bytes: '500000'
     fetch.max.wait.ms: '150'
 
+ingress:
+  enabled: false
+  pathType: ImplementationSpecific
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+      - path: /
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local

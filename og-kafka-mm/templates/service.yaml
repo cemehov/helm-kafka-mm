@@ -11,6 +11,10 @@ spec:
   ports:
     - name: kafka-mm
       port: {{ .Values.servicePort }}
+    {{- if .Values.jmx.enabled }}
+    - name: mm-monitoring
+      port: {{ .Values.prometheus.jmx.port }}
+    {{- end }}
   selector:
     app: {{ template "og-kafka-mm.name" . }}
     release: {{ .Release.Name }}
